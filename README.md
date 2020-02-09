@@ -42,4 +42,6 @@ Mon implémentation offre des résultats satisfaisants en suivant ce procédé. 
 
 La vérification de l'optimalité se fait par rapport au résultat de la librairie knapsack de python. (Attention cette librairie est extrêmement lente)
 
+---
+
 09/02/2020
