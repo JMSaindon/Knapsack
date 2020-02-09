@@ -20,7 +20,7 @@ Encadrant : Laurent Simon
 Une version corrigée de ce TP ayant été diffusée, je précise que ma version a été réalisée sans consultation de celle-ci et que seules les entrées (paramètres en haut du fichier) et sorties (print en bas du fichier) ont été modifiées pour lui correspondre et ainsi me permettre de facilement vérifier son bon fonctionnement en comparaison.
 
 <p align="center">
-  <img src=img/Opti.PNG>
+  <img src=img/knapsackv1res.PNG>
 </p>
 
 ### Implémentation
@@ -41,10 +41,18 @@ Afin de dérouler l'algorithme génétique et de trouver les meilleurs paramètr
 Ma premère implémentation offre des résultats satisfaisants en suivant ce procédé. Sur quelques simulations, le pourcentage moyen d'optimalité tourne autour des 90 \% (avec notamment 91.37 \% sur les simulations représentées ci-dessous) mais le pourcentage d'exactitude n'est que de 2 \%.
 
 <p align="center">
-  <img src=img/Graphique2.png>
+  <img src=img/knapsackv1.png>
 </p>
 
-Ma deuxième version à quant à elle grandement amélioré les performances en faisant passer le pourcentage moyen d'optimalité vers les ... \% (... \% ici) et le pourcentage d'exactitude à ... \%
+Ma deuxième version à quant à elle grandement amélioré les performances en faisant passer le pourcentage moyen d'optimalité vers les 97 \% (97.97 \% ici) et le pourcentage d'exactitude à 55 \%
+
+<p align="center">
+  <img src=img/knapsackv2.png>
+</p>
+
+<p align="center">
+  <img src=img/knapsackv2res.PNG>
+</p>
 
 La vérification de l'optimalité se fait par rapport au résultat de la librairie knapsack de python. (Attention cette librairie est extrêmement lente)
 
