@@ -34,7 +34,7 @@ Dans la première version que j'avais implémenté, la mutation se faisait sur u
 
 Afin d'obtenir de meilleures performances, j'ai abouti a une deuxième version en ayant simplement ajouté la possibilité de mutations multiples (sur plusieurs gènes) et la reproduction par sélection aléatoire de chaque gène chez l'un ou l'autre des parents.
 
-### Résultats
+### Tests et Résultats
 
 Afin de dérouler l'algorithme génétique et de trouver les meilleurs paramètres pour aboutir à la solution optimale, on génère une centaine de populations différentes avec des tailles et des taux de mutation aléatoires. Chacune de ces populations évolue sur 100 générations et le meilleur individu de la dernière évolution est sélectionné pour représenter sa population. Le meilleur représentant (celui ayant la meilleur maximisation du coût) est alors choisi comme solution finale de l'algorithme.
 
