@@ -85,38 +85,44 @@ class Individual:
                 self._sumObj += 1
 
     def fit(self):
-        return 0 if self._sumWeight > self._param.MaxFill else self._sumCost
+        if self._sumWeight > self._param.MaxFill:
+            return 0
+        else:
+            return self._sumCost
 
     def mutate(self):
         """retourne l'individu ayant subi une mutation"""
 
-        i = np.random.randint(0, len(self._pack))
+        n = np.random.randint(0, 1 + len(self._pack)//10) # Possibilité de mutations multiples
 
-        if self._pack[i] == 0:
-            self._pack[i] = 1
-            self._sumWeight += self._param.Objects[i]._weight
-            self._sumCost += self._param.Objects[i]._cost
-            self._sumObj += 1
-        else:
-            self._pack[i] = 0
-            self._sumWeight -= self._param.Objects[i]._weight
-            self._sumCost -= self._param.Objects[i]._cost
-            self._sumObj -= 1
+        for k in range(n):
+            i = np.random.randint(0, len(self._pack))
+
+            if self._pack[i] == 0:
+                self._pack[i] = 1
+                self._sumWeight += self._param.Objects[i]._weight
+                self._sumCost += self._param.Objects[i]._cost
+                self._sumObj += 1
+            else:
+                self._pack[i] = 0
+                self._sumWeight -= self._param.Objects[i]._weight
+                self._sumCost -= self._param.Objects[i]._cost
+                self._sumObj -= 1
 
         self.computeStats()
         return self
 
     def __str__(self):
-        chromosome = ""
+        chromosomePrint = ""
         for k in range(len(self._param.Objects)):
             if self._pack[k] == 0:
-                chromosome += "-"
+                chromosomePrint += "-"
             else:
-                chromosome += "X"
+                chromosomePrint += "X"
         size = " (Size = " + str(self._sumObj) + ")"
         weight = " (Weight = " + str(self._sumWeight) + ")"
         cost = " (Cost = " + str(self._sumCost) + ")"
-        return chromosome + size + weight + cost
+        return chromosomePrint + size + weight + cost
 
 # tests
 # param = Parameters()
@@ -138,17 +144,38 @@ class Population:
         return self
 
     def reproduce(self, p1, p2):
-        """retourne les 2 enfants possiblement créés avec un cross point central.
-        D'autres méthodes de reproduction sont également envisageables"""
+        """retourne les 3 enfants possiblement créés avec une reproduction par crosspoint central
+        et une sélection aléatoire gène par gène"""
 
-        crossPoint = len(self._param.Objects)//2
+        return self.singleCrossPointReproduction(p1, p2) + self.randomReproduction(p1, p2)
+
+    def singleCrossPointReproduction(self, p1, p2):
+        """retourne les 2 enfants possiblement créés avec un cross point central."""
+
+        crossPoint = len(self._param.Objects) // 2
         parent1 = self._members[p1]
         parent2 = self._members[p2]
+
         pack1 = np.concatenate((parent1._pack[:crossPoint], parent2._pack[crossPoint:]))
         pack2 = np.concatenate((parent2._pack[:crossPoint], parent1._pack[crossPoint:]))
         child1 = Individual(self._param).setPack(pack1)
         child2 = Individual(self._param).setPack(pack2)
         return [child1, child2]
+
+    def randomReproduction(self, p1, p2):
+        """retourne l'enfant créé en selectionnant aléatoirement chaque gène"""
+
+        parent1 = self._members[p1]
+        parent2 = self._members[p2]
+
+        parents = [parent1, parent2]
+        packChild = np.zeros(len(self._param.Objects))
+
+        for k in range(len(self._param.Objects)):
+            choice = np.random.randint(0,2)
+            packChild[k] = parents[choice]._pack[k]
+
+        return [Individual(self._param).setPack(packChild)]
 
     def newGeneration(self):
         """fait évoluer la population vers la génération suivante"""
@@ -304,9 +331,15 @@ bestCost, stats = BestPopParam(param)
 
 # Affichage du graphique d'optimalité
 ht = (stats/bestCost)*100
-print("\nOptimality percentage :", np.mean(ht))
+exact = sum((lambda x : x==bestCost)(stats))
+
+print("\nOptimality percentage :", np.mean(ht), "%")
+print("\nExactitude percentage :", exact, "%")
+
+
 plt.bar(x=range(param.NumberOfPopulations), height=ht)
 plt.xlabel('Populations générées aléatoirement')
 plt.ylabel("Pourcentage d'optimalité de la population")
+plt.ylim((60, 100))
 plt.title("Pourcentage d'optimalité des populations après " + str(param.NumberOfGenerations) + " générations et sur " + str(param.NumberOfPopulations) + " simulations")
 plt.show()
