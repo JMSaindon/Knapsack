@@ -17,7 +17,7 @@ Encadrant : Laurent Simon
 
 ## Description
 
-Une version corrigée de ce TP ayant été diffusée, je précise que ma version a été réalisée sans consultation de celle-ci et que seules les entrées (paramètres en haut du fichier) et sorties (print en bas du fichier) ont été modifiées pour lui correspondre et ainsi me permettre de facilement vérifier son bon fonctionnement.
+Une version corrigée de ce TP ayant été diffusée, je précise que ma version a été réalisée sans consultation de celle-ci et que seules les entrées (paramètres en haut du fichier) et sorties (print en bas du fichier) ont été modifiées pour lui correspondre et ainsi me permettre de facilement vérifier son bon fonctionnement en comparaison.
 
 <p align="center">
   <img src=img/Opti.PNG>
@@ -41,3 +41,5 @@ Mon implémentation offre des résultats satisfaisants en suivant ce procédé. 
 </p>
 
 La vérification de l'optimalité se fait par rapport au résultat de la librairie knapsack de python. (Attention cette librairie est extrêmement lente)
+
+09/02/2020
