@@ -30,15 +30,21 @@ Tout d'abord, 4 classes principales ont été créées: Parameters, Object, Indi
 
 Individual est une classe qui opte pour une représentation de la solution au problème sous forme de tableau numpy remplit de 0 ou de 1 selon la présence ou non de l'objet correspondant dans la liste des objets. Enfin, Population contient simplement une liste de Individual.
 
+Dans la première version que j'avais implémenté, la mutation se faisait sur un unique gène et la reproduction était réalisée avec un cross point cenrtral.
+
+Afin d'obtenir de meilleures performances, j'ai abouti a une deuxième version en ayant simplement ajouté la possibilité de mutations multiples (sur plusieurs gènes) et la reproduction par sélection aléatoire de chaque gène chez l'un ou l'autre des parents.
+
 ### Résultats
 
 Afin de dérouler l'algorithme génétique et de trouver les meilleurs paramètres pour aboutir à la solution optimale, on génère une centaine de populations différentes avec des tailles et des taux de mutation aléatoires. Chacune de ces populations évolue sur 100 générations et le meilleur individu de la dernière évolution est sélectionné pour représenter sa population. Le meilleur représentant (celui ayant la meilleur maximisation du coût) est alors choisi comme solution finale de l'algorithme.
 
-Mon implémentation offre des résultats satisfaisants en suivant ce procédé. Sur quelques simulations, le pourcentage moyen d'optimalité tournais autour des 90 \% (avec notamment 91.37 \% sur les simulations représentées ci-dessous).
+Ma premère implémentation offre des résultats satisfaisants en suivant ce procédé. Sur quelques simulations, le pourcentage moyen d'optimalité tourne autour des 90 \% (avec notamment 91.37 \% sur les simulations représentées ci-dessous) mais le pourcentage d'exactitude n'est que de 2 \%.
 
 <p align="center">
   <img src=img/Graphique2.png>
 </p>
+
+Ma deuxième version à quant à elle grandement amélioré les performances en faisant passer le pourcentage moyen d'optimalité vers les ... \% (... \% ici) et le pourcentage d'exactitude à ... \%
 
 La vérification de l'optimalité se fait par rapport au résultat de la librairie knapsack de python. (Attention cette librairie est extrêmement lente)
 
