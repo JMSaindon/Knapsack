@@ -12,12 +12,12 @@ Encadrant : Laurent Simon
 ## Quickstart
 
 - modules nécessaires: numpy et matplotlib
-- Réglez les paramètres que vous souhaitez pour la simulation en haut du fichier `SacADos.py`
+- Réglez les paramètres que vous souhaitez pour la simulation en haut du fichier [SacADos.py](SacADos.py)
 - commande : `$ python SacADos.py`
 
 ## Description
 
-Une version corrigée de ce TP ayant été diffusée, je précise que ma version a été réalisée sans consulation de celle-ci et que seules les entrées (paramètres en haut du fichier) et sorties (print en bas du fichier) ont été modifiées pour lui correspondre et ainsi permettre une meilleure prise en main et esthétisme.
+Une version corrigée de ce TP ayant été diffusée, je précise que ma version a été réalisée sans consultation de celle-ci et que seules les entrées (paramètres en haut du fichier) et sorties (print en bas du fichier) ont été modifiées pour lui correspondre et ainsi me permettre de facilement vérifier son bon fonctionnement.
 
 <p align="center">
   <img src=img/Opti.PNG>
